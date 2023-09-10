@@ -1,19 +1,3 @@
-#####################################################################
-#                                                                   #
-# /labscript_devices/IMAQdxCamera/blacs_workers.py                  #
-#                                                                   #
-# Copyright 2019, Monash University and contributors                #
-#                                                                   #
-# This file is part of labscript_devices, in the labscript suite    #
-# (see http://labscriptsuite.org), and is licensed under the        #
-# Simplified BSD License. See the license.txt file in the root of   #
-# the project for the full license.                                 #
-#                                                                   #
-#####################################################################
-
-# Original imaqdx_camera server by dt, with modifications by rpanderson and cbillington.
-# Refactored as a BLACS worker by cbillington
-
 from pyvcam import pvc 
 from pyvcam.camera import Camera   
 import sys
@@ -291,14 +275,6 @@ class KinetixCameraWorker(Worker):
             image_group = f.require_group(image_path)
             image_group.attrs['camera'] = self.device_name
 
-            # TODO: FIX
-            # # Save camera attributes to the HDF5 file:
-            # if self.attributes_to_save is not None:
-            #     # ROI attributes are annoyingly stored differently
-            #     for key in list(self.attributes_to_save.keys()):
-            #         if 'roi' in key or 'Roi' in key:
-            #             del self.attributes_to_save[key]
-            #     set_attributes(image_group, self.attributes_to_save)
 
             # Whether we failed to get all the expected exposures:
             image_group.attrs['failed_shot'] = len(self.images) != len(self.exposures)
